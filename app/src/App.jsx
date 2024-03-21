@@ -1,8 +1,42 @@
 import styled from "styled-components";
+import { useEffect, useState } from "react";
+import SearchResult from "./components/SearchResult";
+
+const BASE_URL = "http://localhost:9000/";
 
 
 const App = () => {
+  const [data, setData] = useState(null);
+  const [loading, setloading] = useState(false)
+  const [error, seterror] = useState(null);
+
+  useEffect(() => {
+    const fetchFoodData = async () => {
+      try {
+       const response = await fetch(BASE_URL);
+       const json = await response.json();
+   
+       setData(json);
+      } catch (error) {
+       seterror("unable to fetch data")
+      }
+   
+     }
+
+     fetchFoodData();
+
+  }, [])
+
+  console.log(data);
+
+
+  if (error) return <div>{error}</div>
+  if (loading) return <div>loading...</div>
+
+ 
+
   return (
+    <>
     <Container>
       <TopContainer>
         <div className="logo">
@@ -19,11 +53,10 @@ const App = () => {
       <Button>Lunch</Button>
       <Button>Dinner</Button>
       </FilterContainer>
-
-      <FoodContainer>
-        <FoodCards></FoodCards>
-      </FoodContainer>
     </Container>
+    <SearchResult data = {data}/>
+   
+    </>
   )
 }
 
@@ -57,6 +90,7 @@ const TopContainer = styled.section`
      display: flex;
      justify-content: center;
      gap: 12px;
+     padding-bottom: 40px;
   `
   const Button = styled.button`
     background: #351E3B;
@@ -66,7 +100,7 @@ const TopContainer = styled.section`
     color: white;
   `
 
-  const FoodContainer = styled.section``
-  const FoodCards = styled.div``
+  
+  
 
 
