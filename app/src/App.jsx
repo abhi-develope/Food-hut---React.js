@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import SearchResult from "./components/SearchResult";
+import { FaPizzaSlice } from "react-icons/fa6";
 
-const BASE_URL = "http://localhost:9000/";
+export const BASE_URL = "http://localhost:9000";
 
 
 const App = () => {
@@ -40,7 +41,8 @@ const App = () => {
     <Container>
       <TopContainer>
         <div className="logo">
-          <img src="/logo2.png" alt="logo2" />
+          <h2>Foodhut</h2><FaPizzaSlice />
+
         </div>
         <div className="search">
           <input placeholder="Search Food" />
@@ -67,11 +69,22 @@ const  Container = styled.div`
  margin: 0 auto;
 `;
 const TopContainer = styled.section`
-  min-height: 140px;
+  min-height: 100px;
   display: flex;
   justify-content: space-between;
   padding: 16px;
   align-items: center;
+
+  
+  .logo
+  {
+    
+    color: white;
+    font-family: "Taprom", system-ui;  
+    
+    
+  }
+  
 
   .search {
     input {
@@ -92,8 +105,8 @@ const TopContainer = styled.section`
      gap: 12px;
      padding-bottom: 40px;
   `
-  const Button = styled.button`
-    background: #351E3B;
+  export const Button = styled.button`
+    background: red;
     border-radius: 5px;
     border: none;
     padding: 6px 12px;
