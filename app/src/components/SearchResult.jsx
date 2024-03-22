@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { BASE_URL } from "../App"
+import { BASE_URL, Container } from "../App"
 import { Button } from "../App"
 
 
@@ -7,23 +7,23 @@ import { Button } from "../App"
 const SearchResult = ({data}) => {
   return (
     
-  <FoodContainer>
-    <FoodCards>
-        {data?.map(({name, image, text, price}) => (<FoodCard key ={name}>
-            <div className="food_image">
-                <img src={BASE_URL + image} alt="food image" />
-            </div>
-            <div className="food_info">
-                <div className="info">
-                    <h3>{name}</h3>
-                    <p>{text}</p>
-                </div>
-                <Button>${price.toFixed(2)}</Button>
-            </div>
+ <FoodContainer>
+ <Container><FoodCards>
+     {data?.map(({name, image, text, price}) => (<FoodCard key ={name}>
+         <div className="food_image">
+             <img src={BASE_URL + image} alt="food image" />
+         </div>
+         <div className="food_info">
+             <div className="info">
+                 <h3>{name}</h3>
+                 <p>{text}</p>
+             </div>
+             <Button>${price.toFixed(2)}</Button>
+         </div>
 
-        </FoodCard>))}
-    </FoodCards>
-  </FoodContainer>
+     </FoodCard>))}
+ </FoodCards></Container>
+</FoodContainer>
     
   )
 }
@@ -31,7 +31,7 @@ const SearchResult = ({data}) => {
 export default SearchResult
 
 const FoodContainer = styled.section`
-      height: calc(100vh - 172px);
+      min-height: calc(100vh - 160px);
       background-image : url("/bgimage2.jpg") ;
       background-size: cover;
   `

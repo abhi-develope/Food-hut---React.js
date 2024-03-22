@@ -10,6 +10,7 @@ const App = () => {
   const [data, setData] = useState(null);
   const [loading, setloading] = useState(false)
   const [error, seterror] = useState(null);
+  const [filteredData, setFilteredData] = useState(null);
 
   useEffect(() => {
     const fetchFoodData = async () => {
@@ -18,6 +19,7 @@ const App = () => {
        const json = await response.json();
    
        setData(json);
+       setFilteredData(json);
       } catch (error) {
        seterror("unable to fetch data")
       }
@@ -28,7 +30,11 @@ const App = () => {
 
   }, [])
 
-  console.log(data);
+   const searchFood = (e) => {
+    const searchValue = e.target.value;
+
+    console.log(searchValue);
+   }
 
 
   if (error) return <div>{error}</div>
@@ -41,11 +47,11 @@ const App = () => {
     <Container>
       <TopContainer>
         <div className="logo">
-          <h2>Foodhut</h2><FaPizzaSlice />
+         <img src="./logo.png" alt="" />
 
         </div>
         <div className="search">
-          <input placeholder="Search Food" />
+          <input onChange={searchFood} placeholder="Search Food" />
         </div>
       </TopContainer>
 
@@ -56,7 +62,7 @@ const App = () => {
       <Button>Dinner</Button>
       </FilterContainer>
     </Container>
-    <SearchResult data = {data}/>
+    <SearchResult data = {filteredData}/>
    
     </>
   )
@@ -64,12 +70,12 @@ const App = () => {
 
 export default App
 
-const  Container = styled.div`
+export const  Container = styled.div`
  max-width: 1200px;
  margin: 0 auto;
 `;
 const TopContainer = styled.section`
-  min-height: 100px;
+  height: 90px;
   display: flex;
   justify-content: space-between;
   padding: 16px;
@@ -78,11 +84,15 @@ const TopContainer = styled.section`
   
   .logo
   {
+    span{
+    color: red;
+      
+  } 
     
-    color: white;
-    font-family: "Taprom", system-ui;  
-    
-    
+  }
+
+  .logo{
+    font-family: "Taprom", system-ui;
   }
   
 
