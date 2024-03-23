@@ -34,6 +34,13 @@ const App = () => {
     const searchValue = e.target.value;
 
     console.log(searchValue);
+    if (searchValue === "") {
+      setFilteredData(null);
+    }
+
+    const filter = data?.filter((food) => food.name.toLowerCase().includes(searchValue.toLowerCase()));
+    setFilteredData(filter);
+
    }
 
 
@@ -116,11 +123,15 @@ const TopContainer = styled.section`
      padding-bottom: 40px;
   `
   export const Button = styled.button`
-    background: red;
+    background: #ec1d1df6;
     border-radius: 5px;
     border: none;
     padding: 6px 12px;
     color: white;
+    cursor: pointer;
+    &:hover {
+      background-color: red ;
+    }
   `
 
   
