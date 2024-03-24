@@ -51,7 +51,7 @@ const App = () => {
       return;
     }
 
-    const filter = data?.filter((food) => food.type.toLowerCase().includes(type.toLowerCase))
+    const filter = data?.filter((food) => food.type.toLowerCase().includes(type.toLowerCase()))
     setFilteredData(filter);
     setSelectedBtn(type);
     console.log(filter);
@@ -96,13 +96,12 @@ const App = () => {
       </TopContainer>
 
      <FilterContainer>
-      {/* {
+       {
         filterBtns.map((value) => (
           <Button key={value.name} onClick={() => filterFood(value.type)}>{value.name}</Button>
         ))
-      } */}
+      } 
 
-<Button  onClick={() => filterFood("breakfast")}>breakfast</Button>
       
       
       </FilterContainer>
